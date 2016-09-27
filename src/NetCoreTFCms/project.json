@@ -1,0 +1,87 @@
+{
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true
+  },
+  "dependencies": {
+    "BundlerMinifier.Core": "2.2.281",
+    "Microsoft.AspNetCore.Diagnostics": "1.0.0",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
+    "Microsoft.AspNetCore.Mvc": "1.0.1",
+    "Microsoft.AspNetCore.Razor.Tools": {
+      "version": "1.0.0-preview2-final",
+      "type": "build"
+    },
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1",
+    "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.0.1",
+    "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final",
+    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0",
+    "Microsoft.Extensions.Logging": "1.0.0",
+    "Microsoft.Extensions.Logging.Console": "1.0.0",
+    "Microsoft.Extensions.Logging.Debug": "1.0.0",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
+    "Microsoft.NETCore.App": {
+      "version": "1.0.1" ,
+      "type": "platform" //去掉该项，就要增加runtimes节点
+    },
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
+    "Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
+      "version": "1.0.0-preview2-final",
+      "type": "build"
+    },
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
+      "version": "1.0.0-preview2-final",
+      "type": "build"
+    },
+    "MySql.Data.EntityFrameworkCore": "7.0.5-IR21"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ]
+    }
+  },
+  "runtimes": { //加入runtime实现跨平台发布,必须去掉上面Microsoft.NETCore.App  的"type":"platform"
+    "win7-x64": {},
+    "win7-x86": {},
+    "osx.10.10-x64": {},
+    "osx.10.11-x64": {},
+    "ubuntu.14.04-x64": {}
+  },
+  "publishOptions": {
+    "include": [
+      "wwwroot",
+      "Views",
+      "Areas/**/Views",
+      "appsettings.json",
+      "web.config"
+    ]
+  },
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
+    }
+  },
+  "scripts": {
+    "prepublish": [ "bower install", "dotnet bundle" ],
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+  },
+  "tools": {
+    "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final",
+    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final",
+    "Microsoft.VisualStudio.Web.CodeGeneration.Tools": { //用于创建视图工具
+      "version": "1.0.0-preview2-final",
+      "imports": [
+        "portable-net45+win8+dnxcore50",
+        "portable-net45+win8"
+      ]
+    }
+  }
+}
